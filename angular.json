@@ -20,7 +20,6 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/css/styles.css",
               "src/css/fontastic.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/brands.min.css",
@@ -31,7 +30,8 @@
               "node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
               "node_modules/codemirror/lib/codemirror.css",
               "node_modules/codemirror/addon/hint/show-hint.css",
-              "node_modules/codemirror/theme/darcula.css"
+              "node_modules/codemirror/theme/darcula.css",
+              "src/css/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

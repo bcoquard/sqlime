@@ -9,13 +9,12 @@ import {
 } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
 import { delay, mergeMap, materialize, dematerialize } from "rxjs/operators";
-import { InMemoryBackendConfig } from "angular-in-memory-web-api";
 
 import { User, Database } from "../../models";
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
-  constructor() { }
+  constructor() {}
 
   intercept(
     request: HttpRequest<any>,
@@ -28,7 +27,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       of(null)
         .pipe(
           mergeMap(() => {
-    console.log(request.url);
+            console.log(request.url);
 
             // authenticate
             if (request.url.endsWith("/api/authenticate")) {
@@ -75,7 +74,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
   }
 
-
   handleConnect(request: HttpRequest<any>) {
     if (request.method === "POST") {
       return of(new HttpResponse({ status: 200, body: {} }));
@@ -86,13 +84,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
   }
 
   handleDatabaseInfos(request: HttpRequest<any>) {
-
     if (request.method === "GET") {
       let response = {
         currentConnection: Math.floor(Math.random() * 100) + 1,
-        ramUsage: Math.floor(Math.random() * 100) + 1 + '%',
-        cpuUsage: Math.floor(Math.random() * 100) + 1 + '%',
-        diskUsage: Math.floor(Math.random() * 100) + 1 + '%',
+        ramUsage: Math.floor(Math.random() * 100) + 1 + "%",
+        cpuUsage: Math.floor(Math.random() * 100) + 1 + "%",
+        diskUsage: Math.floor(Math.random() * 100) + 1 + "%",
         tables: Math.floor(Math.random() * 100) + 1
       };
       return of(new HttpResponse({ status: 200, body: response }));

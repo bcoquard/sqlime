@@ -1,26 +1,77 @@
 <div class="container-fluid">
-  <div class="row d-flex">
-    <div class="col-lg-6" *ngFor="let database of databases">
-      <div class="card clickable" (click)="connectDatabase(database)">
 
-        <div class="row d-flex justify-content-between">
-          <div class="col-sm-10">
-            <h2 class="display h4">{{database.connectionName}}</h2>
-          </div>
-          <div class="col-sm-2">
-            <i class="fas fa-edit" (click)="editDatabase(database.id)"></i>
-            <i class="fas fa-trash-alt" (click)="deleteDatabase(database.id)"></i>
-          </div>
-        </div>
-        <div class="fa-left">
-          <i class="fas fa-user"></i>
-          {{database.username}}
-        </div>
-        <div class="fa-left">
-          <i class="fas fa-bezier-curve"></i>
-          <span>{{database.jdbcConnectionUrl}}:{{database.jdbcConnectionPort}}</span>
-        </div>
-      </div>
+  <div class="card">
+    <div class="card-header">
+      <h4>Recently used</h4>
+    </div>
+
+    <div class="card-body">
+      <table class="table  table-striped">
+        <thead>
+          <tr>
+            <th sortable-column="id" scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Url</th>
+            <th scope="col">Database</th>
+            <th scope="col">User</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- TODO
+                  <tr *ngFor="let database of databases">
+                  <td>{{database.id}}</td>
+                  <td>{{database.connectionName}}</td>
+                  <td>{{database.jdbcConnectionUrl}}:{{database.jdbcConnectionPort}}</td>
+                  <td>{{database.databaseName}}</td>
+                  <td>{{database.username}}</td>
+                  <td><i class="fas fa-plug green"></i> </td>
+                  <td><i class="fas fa-edit blue"></i> </td>
+                  <td><i class="fas fa-trash red"></i> </td>
+                  </tr>
+                -->
+        </tbody>
+      </table>
+
     </div>
   </div>
+
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4>Registered database connections</h4>
+      <i class="fas fa-plus-circle green clickable" (click)="createDatabase()"></i>
+    </div>
+
+    <div class="card-body">
+      <table class="table  table-striped">
+        <thead>
+          <tr>
+            <th sortable-column="id" scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Url</th>
+            <th scope="col">Database</th>
+            <th scope="col">User</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let database of databases">
+            <td>{{database.id}}</td>
+            <td>{{database.connectionName}}</td>
+            <td>{{database.jdbcConnectionUrl}}:{{database.jdbcConnectionPort}}</td>
+            <td>{{database.databaseName}}</td>
+            <td>{{database.username}}</td>
+            <td><i class="fas fa-plug green clickable" (click)="connectDatabase(database)"></i> </td>
+            <td><i class="fas fa-edit blue clickable" (click)="editDatabase(database)"></i> </td>
+            <td><i class="fas fa-trash red clickable" (click)="deleteDatabase(database)"></i> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </div>

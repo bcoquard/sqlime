@@ -8,26 +8,32 @@ import {
 } from "@angular/common/http";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { CodemirrorModule } from "@ctrl/ngx-codemirror";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
-import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
-import { UsersInMemoryDataService } from "../services/data/users-in-memory-data.service";
-import { DatabasesInMemoryDataService } from "../services/data/databases-in-memory-data.service";
-
-import { AppRoutingModule } from "../main/app-routing.module";
-
+// Components
+import { HeaderComponent } from "../components/header/header.component";
+import { SideNavComponent } from "../components/side-nav/side-nav.component";
 import { AppComponent } from "./app.component";
 import { AlertComponent } from "../components/alert/alert.component";
+
+// Services
 import { fakeBackendProvider } from "../services/interceptors/fake-backend.interceptor";
 import { JwtInterceptor } from "../services/interceptors/jwt.interceptor";
-import { HomeComponent } from "../pages/home/home.component";
-import { LoginComponent } from "../pages/login/login.component";
-import { LoginGuard } from "../guards/login.guard";
 import { AlertService } from "../services/alert.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { UserService } from "../services/user.service";
+
+// Guards
+import { LoginGuard } from "../guards/login.guard";
+
+// Pages
+import { AppRoutingModule } from "../main/app-routing.module";
+import { HomeComponent } from "../pages/home/home.component";
+import { HomeConnectionModalComponent } from "../pages/home/home-connection.modal.component";
+
+import { LoginComponent } from "../pages/login/login.component";
 import { DatabaseRegisterComponent } from "../pages/register/database-register.component";
-import { HeaderComponent } from "../components/header/header.component";
-import { SideNavComponent } from "../components/side-nav/side-nav.component";
 import { DatabaseComponent } from "../pages/database/database.component";
 import { AppTemplateComponent } from "../pages/template/app-template.component";
 import { SqlEditorComponent } from "../pages/query/sql-editor.component";
@@ -36,9 +42,6 @@ import { DatabaseMonitoringComponent } from "../pages/monitoring/database-monito
 import { DatabaseCompareComponent } from "../pages/compare/database-compare.component";
 import { DatabaseVisualisationComponent } from "../pages/visualisation/database-visualisation.component";
 
-import { CodemirrorModule } from "@ctrl/ngx-codemirror";
-
-// AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -57,22 +60,12 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgbModule.forRoot(),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     CodemirrorModule,
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(UsersInMemoryDataService, {
-      dataEncapsulation: false,
-      passThruUnknownUrl: true
-    }),
-    HttpClientInMemoryWebApiModule.forRoot(DatabasesInMemoryDataService, {
-      dataEncapsulation: false,
-      passThruUnknownUrl: true
-    })
   ],
   declarations: [
     AppComponent,
@@ -88,7 +81,8 @@ export function createTranslateLoader(http: HttpClient) {
     DatabaseBrowserComponent,
     DatabaseMonitoringComponent,
     DatabaseCompareComponent,
-    DatabaseVisualisationComponent
+    DatabaseVisualisationComponent,
+    HomeConnectionModalComponent
   ],
   providers: [
     LoginGuard,
@@ -102,6 +96,7 @@ export function createTranslateLoader(http: HttpClient) {
     },
     fakeBackendProvider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [HomeConnectionModalComponent]
 })
 export class AppModule {}
