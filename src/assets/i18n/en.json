@@ -1,0 +1,17 @@
+{
+  "LOGIN": {
+    "WELCOME_MSG": "Welcome, please login to continue. If you don't have an account, you can create one at the bottonm of the login page"
+  },
+
+  "LABEL": {
+    "LOGIN": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "REMEMBER_ME": "Remember me",
+    "SIGN_UP": "Sign up",
+    "QUESTION_FORGOT_PASSWORD": "Forgot password?",
+    "QUESTION_NO_ACCOUNT": "Do not have an account?",
+    "FR" :"French",
+    "EN" :"English"
+  }
+}

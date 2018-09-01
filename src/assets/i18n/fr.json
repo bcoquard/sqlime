@@ -1,0 +1,17 @@
+{
+  "LOGIN": {
+    "WELCOME_MSG": "Salut"
+  },
+
+  "LABEL": {
+    "LOGIN": "Login",
+    "USERNAME": "Utilisateur",
+    "PASSWORD": "Mot de passe",
+    "REMEMBER_ME": "Se souvenir de moi",
+    "SIGN_UP": "S'enregister",
+    "QUESTION_FORGOT_PASSWORD": "Mot de passe oublié ?",
+    "QUESTION_NO_ACCOUNT": "Pas encore de compte ?",
+    "FR" :"Français",
+    "EN" :"Anglais"
+  }
+}

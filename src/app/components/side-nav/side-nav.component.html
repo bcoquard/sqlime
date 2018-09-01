@@ -1,0 +1,55 @@
+<nav class="side-navbar">
+  <div class="side-navbar-wrapper">
+    <!-- Sidebar Header    -->
+    <div class="sidenav-header d-flex align-items-center justify-content-center">
+      <!-- User Info-->
+      <!-- Small Brand information, appears on minimized sidebar-->
+      <div class="text-center">
+        <img src="assets/logo.png" class="sidenav-header-logo img-fluid">
+        <div *ngIf="database">
+          <h2 class="sidenav-header-inner h5">{{database.connectionName}}</h2>
+        </div>
+      </div>
+
+    </div>
+    <!-- Sidebar Navigation Menus-->
+    <div *ngIf="isConnected$ | async; else elseBlock">
+      <div class="main-menu">
+        <h5 class="sidenav-heading">Main</h5>
+        <ul id="side-main-menu" class="side-menu list-unstyled">
+          <li>
+            <a [routerLink]="['./database']">
+              <i class="icon-home"></i>Database</a>
+          </li>
+          <li>
+            <a [routerLink]="['./editor']">
+              <i class="icon-home"></i>SQL</a>
+          </li>
+
+          <li>
+            <a [routerLink]="['./browse']">
+              <i class="icon-form"></i>Browse</a>
+          </li>
+          <li>
+            <a [routerLink]="['./monitoring']">
+              <i class="icon-grid"></i>Monitoring </a>
+          </li>
+          <li>
+            <a [routerLink]="['./compare']">
+              <i class="icon-grid"></i>Compare </a>
+          </li>
+          <li>
+            <a [routerLink]="['./visualisation']">
+              <i class="icon-grid"></i>Visualisation </a>
+          </li>
+        </ul>
+      </div>
+
+      <span [routerLink]="['./home']" class="clickable">Disconnect database</span>
+
+    </div>
+    <ng-template #elseBlock>
+      First connect to a database
+    </ng-template>
+  </div>
+</nav>
