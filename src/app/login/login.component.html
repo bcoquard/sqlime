@@ -1,0 +1,41 @@
+<div class="page login-page">
+  <div class="container">
+    <div class="form-outer text-center d-flex align-items-center">
+      <div class="form-inner">
+        <div class="logo text-uppercase">
+          <span>SqlWebClient</span>
+          <strong class="text-primary"> Login</strong>
+        </div>
+        <p>Welcome please login to continue. If you don't have an account, you can create one at the bottom of the login page.</p>
+
+        <form class="text-left form-validate" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group-material">
+            <input id="login-username" type="text" required data-msg="Please enter your username" class="input-material" formControlName="email">
+            <label for="login-username" class="label-material">Username</label>
+          </div>
+
+          <div class="form-group-material">
+            <input id="login-password" type="password" required data-msg="Please enter your password" class="input-material" formControlName="password">
+            <label for="login-password" class="label-material">Password</label>
+          </div>
+
+
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+
+          <div class="form-group text-center">
+            <button [disabled]="loading" class="btn btn-primary" type="submit">Login</button>
+          </div>
+
+        </form>
+
+        <a href="#" class="forgot-pass">Forgot Password?</a>
+        <small>Do not have an account? </small>
+        <a [routerLink]="['/register']" class="signup">Signup</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+#alerts-component {
+    position: fixed;
+    margin: 10px;
+    top: 0;
+    right: 0;
+    width: 30%;
+    z-index: 99;
+}
+
+#alerts-btn-close{
+    width: 100%;
+    margin-bottom: 5px;
+}
