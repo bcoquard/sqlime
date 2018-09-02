@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { Database } from "../../models/database";
-
 @Component({
   selector: "app-database-register",
   templateUrl: "./database-register.component.html",

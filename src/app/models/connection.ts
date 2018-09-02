@@ -1,4 +1,4 @@
-export class Database {
+export class Connection {
   id: number;
   connectionName: string;
   jdbcConnectionUrl: string;

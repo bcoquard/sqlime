@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { Database } from "../../models";
+import { Connection } from "../../models";
 
 @Component({
   selector: "app-home-connection-modal",
@@ -10,11 +10,17 @@ import { Database } from "../../models";
 })
 export class HomeConnectionModalComponent implements OnInit {
   @Input()
-  connection: Database;
+  inputConnection: Connection;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  connection: Connection;
 
-  ngOnInit() {}
+  constructor(public activeModal: NgbActiveModal) {
+  }
+
+  ngOnInit() {
+    this.connection = { ...this.inputConnection };
+
+  }
 
   close() {
     this.activeModal.dismiss();

@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { DatabaseConnectionService } from "../../services/database-connection.service";
-import { Database } from "../../models/database";
+import { ConnectionsService } from "../../services/connections.service";
+import { Connection } from "../../models/connection";
 
 @Component({
   selector: "app-side-nav",
@@ -10,15 +10,15 @@ import { Database } from "../../models/database";
   styleUrls: ["./side-nav.component.css"]
 })
 export class SideNavComponent implements OnInit {
-  private isConnected$: Observable<boolean>;
-  private database: Database;
+  isConnected$: Observable<boolean>;
+  connection: Connection;
 
-  constructor(private databaseConnectionService: DatabaseConnectionService) {}
+  constructor(private connectionsService: ConnectionsService) {}
 
   ngOnInit() {
-    this.isConnected$ = this.databaseConnectionService.isConnected;
-    this.databaseConnectionService.database.subscribe(database => {
-      this.database = database;
+    this.isConnected$ = this.connectionsService.isConnected;
+    this.connectionsService.connection.subscribe(connection => {
+      this.connection = connection;
     });
   }
 }

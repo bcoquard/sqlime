@@ -10,8 +10,6 @@ import {
 import { Observable, of, throwError } from "rxjs";
 import { delay, mergeMap, materialize, dematerialize } from "rxjs/operators";
 
-import { User, Database } from "../../models";
-
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
   constructor() {}

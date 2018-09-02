@@ -1,6 +1,18 @@
 <section class="dashboard-counts section-padding">
   <div *ngIf="infos$ | async" class="container-fluid">
     <div class="row">
+      <div class="col-xl-2 col-md-4 col-6" *ngFor="let iter of infos">
+        <div class="wrapper count-title d-flex">
+          <div class="icon">
+            <i class="icon-user"></i>
+          </div>
+          <div class="name">
+            <strong class="text-uppercase">{{iter.name}}</strong>
+            <div class="count-number">{{iter.value}}</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Count item widget-->
       <div class="col-xl-2 col-md-4 col-6">
         <div class="wrapper count-title d-flex">

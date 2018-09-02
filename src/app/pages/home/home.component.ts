@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { User } from "../../models/user";
-import { Database } from "../../models/database";
-import { DatabasesService } from "../../services/databases.service";
-import { DatabaseConnectionService } from "../../services/database-connection.service";
+import { Connection } from "../../models/connection";
+import { ConnectionsService } from "../../services/connections.service";
 import { TranslateService } from "@ngx-translate/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { HomeConnectionModalComponent } from "./home-connection.modal.component";
@@ -15,11 +14,10 @@ import { HomeConnectionModalComponent } from "./home-connection.modal.component"
 })
 export class HomeComponent implements OnInit {
   currentUser: User;
-  databases: Database[] = [];
+  conectionsList: Connection[] = [];
 
   constructor(
-    private databasesService: DatabasesService,
-    private databaseConnectionService: DatabaseConnectionService,
+    private connectionsService: ConnectionsService,
     private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
@@ -33,47 +31,53 @@ export class HomeComponent implements OnInit {
   }
 
   private loadAllDatabasesConnection() {
-    this.databasesService.getDatabases().subscribe(databases => {
-      this.databases = databases;
+    this.connectionsService.get().subscribe(conectionsList => {
+      this.conectionsList = conectionsList;
     });
   }
 
-  private openFormModal(database: Database) {
+  private openFormModal(connection: Connection) {
     const modalForm = this.modalService.open(HomeConnectionModalComponent);
-    modalForm.componentInstance.connection = database;
+    modalForm.componentInstance.inputConnection = connection;
 
     return modalForm.result;
   }
 
-  createDatabase() {
-    this.openFormModal(new Database()).then(database => {
-      this.upsertDatabase(database);
-    });
+  createConnection() {
+    this.openFormModal(new Connection()).then(
+      connection => {
+        this.upsertConnection(connection);
+      },
+      function() {}
+    );
   }
 
-  connectDatabase(database: Database) {
-    this.databaseConnectionService.connect(database).subscribe(_ => {
+  connect(connection: Connection) {
+    this.connectionsService.connect(connection).subscribe(_ => {
       this.router.navigate(["../database"], { relativeTo: this.route });
     });
   }
 
-  editDatabase(database: Database) {
-    this.openFormModal(database).then(database => {
-      this.upsertDatabase(database);
-    });
+  editConnection(connection: Connection) {
+    this.openFormModal(connection).then(
+      connection => {
+        this.upsertConnection(connection);
+      },
+      function() {}
+    );
   }
 
-  upsertDatabase(database: Database) {
-    this.databasesService.upsertDatabase(database).subscribe(_ => {
+  upsertConnection(connection: Connection) {
+    this.connectionsService.upsert(connection).subscribe(_ => {
       this.loadAllDatabasesConnection();
     });
   }
 
-  deleteDatabase(database: Database) {
+  deleteConnection(connection: Connection) {
     this.translate.get("CONFIRM.DELETE").subscribe((res: string) => {
       if (confirm("Are you sure to delete " + name)) {
-        this.databasesService
-          .deleteDatabase(database.id.toString())
+        this.connectionsService
+          .delete(connection.id.toString())
           .subscribe(_ => {
             this.loadAllDatabasesConnection();
           });

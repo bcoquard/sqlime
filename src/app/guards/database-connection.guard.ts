@@ -8,7 +8,7 @@ import {
   RouterStateSnapshot
 } from "@angular/router";
 
-import { DatabaseConnectionService } from "../services/database-connection.service";
+import { ConnectionsService } from "../services/connections.service";
 
 @Injectable({
   providedIn: "root"
@@ -16,13 +16,13 @@ import { DatabaseConnectionService } from "../services/database-connection.servi
 export class DatabaseConnectionGuard implements CanActivate {
   constructor(
     private router: Router,
-    private databaseConnectionService: DatabaseConnectionService
+    private connectionsService: ConnectionsService
   ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):Observable<boolean> | Promise<boolean> | boolean{
-    return this.databaseConnectionService.isConnected.pipe(
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    return this.connectionsService.isConnected.pipe(
       take(1),
       map((isConnected: boolean) => {
         if (!isConnected) {

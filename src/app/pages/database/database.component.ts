@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { Observable, BehaviorSubject } from "rxjs";
 
-import { DatabaseConnectionService } from "../../services/database-connection.service";
-import { Database } from "../../models/database";
+import { ConnectionsService } from "../../services/connections.service";
+import { Connection } from "../../models/connection";
 
 @Component({
   selector: "app-database",
@@ -12,14 +12,14 @@ import { Database } from "../../models/database";
   styleUrls: ["./database.component.css"]
 })
 export class DatabaseComponent implements OnInit {
-  private database: Database;
+  private connection: Connection;
   private infos$ = new BehaviorSubject<object>(null);
   private infos: Object;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private databaseConnectionService: DatabaseConnectionService
+    private connectionsService: ConnectionsService
   ) {
     this.infos$.subscribe(infos => {
       if (infos) {
@@ -29,14 +29,16 @@ export class DatabaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.databaseConnectionService.database.subscribe(database => {
-      if (database == null) {
+    this.connectionsService.connection.subscribe(connection => {
+      if (connection == null) {
         this.router.navigate(["../home"], { relativeTo: this.route });
       } else {
-        this.database = database;
-        this.databaseConnectionService
-          .infos()
-          .subscribe(infos => this.infos$.next(infos));
+        this.connection = connection;
+        this.connectionsService
+          .infos(connection)
+          .subscribe(infos => {
+            return this.infos$.next(infos);
+          });
       }
     });
   }
