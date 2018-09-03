@@ -30,4 +30,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## TODOs
 - [x] Start project
+- [ ] Update database infos page with sql driver infos
 - [ ] Make slide nav use title on icons <i _ngcontent-c4="" class="icon-home" title="Database"></i>
