@@ -65,7 +65,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CodemirrorModule,
+    CodemirrorModule
   ],
   declarations: [
     AppComponent,

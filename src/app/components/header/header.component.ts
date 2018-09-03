@@ -17,12 +17,7 @@ export class HeaderComponent implements OnInit {
     private authService: AuthenticationService,
     private translate: TranslateService
   ) {
-    this.currentLang = translate.currentLang.toUpperCase();
-    translate
-      .get("LABEL." + this.currentLang.toUpperCase())
-      .subscribe((res: string) => {
-        this.language = res;
-      });
+    this.whenSelectLang(translate.currentLang);
   }
 
   isLoggedIn$: Observable<boolean>;
@@ -37,6 +32,15 @@ export class HeaderComponent implements OnInit {
 
   changeLang(lang: string) {
     this.translate.use(lang);
+    this.whenSelectLang(lang);
+  }
+
+  private whenSelectLang(lang: string) {
     this.currentLang = lang.toUpperCase();
+    this.translate
+      .get("LABEL." + this.currentLang.toUpperCase())
+      .subscribe((res: string) => {
+        this.language = res;
+      });
   }
 }

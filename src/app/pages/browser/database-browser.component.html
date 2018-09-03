@@ -1,3 +1,5 @@
-<p>
-  data-browser works!
-</p>
+<div *ngFor="let schema of listSchemas">
+  <div *ngFor="let table of treeviewTables[schema]">
+      {{schema}}.{{table}}
+  </div>
+</div>

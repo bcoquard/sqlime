@@ -74,6 +74,10 @@ export class ConnectionsService {
     return this.http.get(this.url + "/infos/" + connection.id);
   }
 
+  treeview(connection: Connection) {
+    return this.http.get(this.url + "/treeview/" + connection.id);
+  }
+
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
       this.alertService.error("${operation} failed: ${error.message}"); // log to console instead
