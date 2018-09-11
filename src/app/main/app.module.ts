@@ -23,6 +23,8 @@ import { JwtInterceptor } from "../services/interceptors/jwt.interceptor";
 import { AlertService } from "../services/alert.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { UserService } from "../services/user.service";
+import { ConnectionsService } from "../services/connections.service";
+import { QueryService } from "../services/query.service";
 
 // Guards
 import { LoginGuard } from "../guards/login.guard";
@@ -89,6 +91,8 @@ export function createTranslateLoader(http: HttpClient) {
     AlertService,
     AuthenticationService,
     UserService,
+    ConnectionsService,
+    QueryService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

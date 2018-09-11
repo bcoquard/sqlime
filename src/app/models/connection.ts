@@ -1,5 +1,5 @@
 export class Connection {
-  id: number;
+  id: string;
   connectionName: string;
   jdbcConnectionUrl: string;
   jdbcConnectionPort: string;

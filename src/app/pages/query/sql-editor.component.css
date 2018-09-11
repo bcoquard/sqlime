@@ -1,0 +1,11 @@
+.container-fluid {
+  margin-top: 15px;
+}
+
+.card {
+  padding: 20px;
+}
+
+.fa-left>i {
+  margin-right: 10px;
+}
